@@ -1,4 +1,4 @@
-<? 
+<?
     require_once 'db/connection.php'; // подключаем скрипт
 
 // подключаемся к серверу
@@ -18,11 +18,11 @@ $rows = mysqli_num_rows($result); // количество полученных �
  for ($i = 0 ; $i < $rows ; ++$i)
  {
         $row = mysqli_fetch_row($result);
- 
+
 
 
             if( ($i % 2) == 0) echo'<div class="row">';
-            
+
                 echo '<div class="col">
                     <div>
                         <div class="row">
@@ -42,19 +42,19 @@ $rows = mysqli_num_rows($result); // количество полученных �
                                 <div class="col-3">Autor:' .$row[4].'</div>
                                 <div class="col-3"></div>
                                 <div style="padding:" class="col-3 text-right">
-                                    <a style=" " href="page/article.html" class="pull-right btn btn-primary">More</a>
+                                    <a style=" " href="page/article.php?article='.$row[5].'" class="pull-right btn btn-primary">More</a>
                                 </div>
                             </div>
                         </div>
 
                     </div>
                 </div>';
-                
+
             if( ($i % 2) == 1) echo'</div>';
         }
         echo '</div>';
 
-   
+
    // очищаем результат
     mysqli_free_result($result);
 

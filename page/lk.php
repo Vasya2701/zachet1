@@ -70,7 +70,7 @@ $rows = mysqli_num_rows($result); // количество полученных �
                                 <div class="col-3">Autor:' .$row[4].'</div>
                                 <div class="col-3"></div>
                                 <div style="padding:" class="col-3 text-right">
-                                    <a style=" " href="page/article.html" class="pull-right btn btn-primary">More</a>
+                                    <a style=" " href="article.php?article='.$row[5].'" class="pull-right btn btn-primary">More</a>
                                 </div>
                             </div>
                         </div>
