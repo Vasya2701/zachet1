@@ -19,6 +19,7 @@ if (isset($_COOKIE['id']) and isset($_COOKIE['hash']))
     else
     {
         print "Привет, ".$userdata['user_login'].". Всё работает!";
+        echo '<a href="../../index.php">на главную</a';
     }
 }
 else
