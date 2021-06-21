@@ -10,7 +10,7 @@
 <?
 include_once'nav.php';
 ?>
-<h1>Мои статьи</h1>
+<h1 class="mx-5">Личный кабинет</h1>
 <?
 
 
@@ -33,7 +33,14 @@ $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($lin
 if($result)
 $rows = mysqli_num_rows($result); // количество полученных строк
 
-        echo "<div class='container'>";
+        echo "<div class='container'>
+        <div class='row'>
+            <div class='col-3'>
+                <ul class='my-02'>
+                </ul>
+                </div>
+                <div class='col'><h3>Мои статьи</h3>";
+
 
 
  for ($i = 0 ; $i < $rows ; ++$i)
@@ -73,7 +80,8 @@ $rows = mysqli_num_rows($result); // количество полученных �
 
             if( ($i % 2) == 1) echo'</div>';
         }
-        echo '</div>';
+        echo '</div></div>
+    </div>';
 
       // очищаем результат
     mysqli_free_result($result);
