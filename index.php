@@ -17,6 +17,7 @@
                 <?include_once'page/mounts.php'; ?>
             </ul></div>
         <div class="col">
+          
             <?include_once'page/prearticle.php'; ?>
         </div>
     </div>

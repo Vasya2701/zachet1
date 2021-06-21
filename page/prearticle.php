@@ -5,8 +5,20 @@
 $link = mysqli_connect($host, $user, $password, $database)
 or die("Ошибка " . mysqli_error($link));
 
+
+if($_GET["years"] == 0)
+{
+$query = "SELECT * FROM post ";
+}
+else {
+  $year = $_GET["years"];
+  $mount = $_GET["mounts"];
+  $query = "SELECT * FROM post WHERE MONTH(date) = $mount AND YEAR(date) = $year";
+}
+
+
 // выполняем операции с базой данных
-$query = "SELECT * FROM `post`";
+
 
 $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
 if($result)

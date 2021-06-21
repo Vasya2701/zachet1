@@ -1,6 +1,6 @@
 
 
-<? 
+<?
     require_once 'db/connection.php'; // подключаем скрипт
 
 // подключаемся к серверу
@@ -18,10 +18,10 @@ $rows = mysqli_num_rows($result); // количество полученных �
  {
         $row = mysqli_fetch_row($result);
 
-echo"<li><a href='$row[3]'>$row[2] $row[1]</a></li>";
+echo"<li><a href='/index.php?mounts=$row[4]&years=$row[2]'>$row[2] $row[1]</a></li>";
  }
 
-   
+
    // очищаем результат
     mysqli_free_result($result);
 ?>

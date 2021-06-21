@@ -22,9 +22,15 @@ $log = mysqli_query($link, "SELECT *,INET_NTOA(user_ip) AS user_ip FROM users WH
 $userdata = mysqli_fetch_assoc($log);
 $userouth=$userdata['user_login'];
 // выполняем операции с базой данных
-$article=htmlspecialchars($_GET["article"]);
-$query = "SELECT * FROM post WHERE id=$article";
-
+if($_GET["article"]) {
+$posts = ($_GET["article"]);
+$query = "SELECT * FROM post WHERE id=$posts";
+}
+else {
+  $year = $_GET["years"];
+  $mount = $_GET["mounts"];
+  $query = "SELECT * FROM post WHERE MONTH(date) = 6 AND YEAR(date) = 2021";
+}
 $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
 $row = mysqli_fetch_row($result);
 
