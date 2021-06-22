@@ -36,8 +36,81 @@ $rows = mysqli_num_rows($result); // количество полученных �
 
         echo "<div class='container'>
         <div class='row'>
-            <div class='col-3'>
+            <div class='col-4'>
                 <ul class='my-02'>";?>
+
+
+
+
+                  <?
+                  // Страница авторизации
+
+                  // Функция для генерации случайной строки
+                  function generateCode($length=6) {
+                      $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHI JKLMNOPRQSTUVWXYZ0123456789";
+                      $code = "";
+                      $clen = strlen($chars) - 1;
+                      while (strlen($code) < $length) {
+                              $code .= $chars[mt_rand(0,$clen)];
+                      }
+                      return $code;
+                  }
+
+                  // Соединямся с БД
+                  $link=mysqli_connect("localhost", "admin", "12345678", "zachet");
+                  if (isset($_COOKIE['id']) and isset($_COOKIE['hash']))
+                  {
+                  $query = mysqli_query($link, "SELECT *,INET_NTOA(user_ip) AS user_ip FROM users WHERE user_id = '".intval($_COOKIE['id'])."' LIMIT 1");
+                  $userdata = mysqli_fetch_assoc($query);
+                  $autuser=$userdata['user_login'];
+                  }
+                  if(isset($_POST['submiti']))
+                  {
+                      // Вытаскиваем из БД запись, у которой логин равняеться введенному
+                      $query = mysqli_query($link, "SELECT *,INET_NTOA(user_ip) AS user_ip FROM users WHERE user_hash = '".intval($_COOKIE['id'])."' LIMIT 1");
+
+                      $data = mysqli_fetch_assoc($query);
+                      $newpassword = md5(md5($_POST['newpassword']));
+                      // Сравниваем пароли
+                      $a = md5(md5(trim($_POST['newpassword'])));
+                      echo ''.$a.'';
+                      $autuser=$data['user_login'];
+                      if($data['user_password'] == md5(md5(trim($_POST['password']))))
+                      {
+
+
+
+                          // Записываем в БД новый хеш авторизации и IP
+                          mysqli_query($link, "UPDATE users SET user_login='".$autuser."' WHERE user_password='".$newpassword."'");
+
+                          // Ставим куки
+//  setcookie("id", "", time() - 3600*24*30*12, "/");
+                        //  setcookie("hash", "", time() - 3600*24*30*12, "/",null,null,true); // httponly !!!
+
+
+                          // Переадресовываем браузер на страницу проверки нашего скрипта
+                        //  header("Location: ../login.php"); exit();
+                      }
+                      else
+                      {
+                          print "Вы ввели неправильный логин/пароль";
+                      }
+                  }
+                  ?>
+                  <form method="POST">
+
+                  Пароль <input name="password" type="password" required><br>
+                  новый Пароль <input name="newpassword" type="password" required><br>
+                  Не прикреплять к IP(не безопасно) <input type="checkbox" name="not_attach_ip"><br>
+                  <input name="submiti" type="submit" value="изменить пароль">
+                  </form>
+
+
+
+
+
+
+
                   <h4>Добавить статью</h4>
                 <form method="post" action="up.php" enctype="multipart/form-data" class="mx-auto" style="width: 250px">
     <div class="form-group">
@@ -100,7 +173,7 @@ $rows = mysqli_num_rows($result); // количество полученных �
                                 <div class="col-3">Autor:' .$row[4].'</div>
                                 <div class="col-3"></div>
                                 <div style="padding:" class="col-3 text-right">
-                                    <a style=" " href="article.php?article='.$row[5].'" class="pull-right btn btn-primary">More</a>
+                                    <a style=" " href="article.php?article='.$row[0].'" class="pull-right btn btn-primary">More</a>
                                 </div>
                             </div>
                         </div>
