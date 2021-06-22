@@ -42,7 +42,7 @@ $row = mysqli_fetch_row($result);
                         </div>
                         <div class="row">
                             <div class="col">
-                                <img align="left" style="width: 200px; height: 200px;" src="'.$row[6].'" alt="foto" vspace="5" hspace="10">
+                                <img align="left" style="width: 200px; height: 200px;" src="../img/'.$row[6].'" alt="foto" vspace="5" hspace="10">
                                 <p align="">
                                   '.$row[2].'
                </div>

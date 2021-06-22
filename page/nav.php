@@ -33,7 +33,7 @@
                         <a class="nav-link active" aria-current="page" href="/page/lk.php">'.$userdata['user_login'].'</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="page/logout.php">Выход</a>
+                        <a class="nav-link" href="../page/logout.php">Выход</a>
                     </li>';
     }
 }
