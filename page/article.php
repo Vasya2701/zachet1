@@ -35,10 +35,7 @@ $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($lin
 $row = mysqli_fetch_row($result);
 
       echo'<div class="row">
-          <div class="col-3">
-              <ul class="my-2">
 
-              </ul></div>
           <div class="col">
             <div class="row">
                             <h1>'.$row[1].'</h1>
@@ -52,13 +49,96 @@ $row = mysqli_fetch_row($result);
            </div>
            <div class="row">
                <strong style="float: left;">'.$row[3].' autor:'.$row[4].'</strong>
-               <a style="width: 100px; float: right; " class="pull-right btn btn-primary">back</a>
+               <a href="/index.php" style="width: 100px; float: right; " class="pull-right btn btn-primary">back</a>
            </div>
           </div>
       </div>
   </div>';
 ?>
+<?
 
+
+
+
+
+?>
+<div class="container">
+<div class="row">
+  <div class="col-4"></div>
+  <div class="col-4">
+
+<form name="comment" action="comment.php" method="post">
+  <p>
+    <label>почта:</label>
+    <input type="text" name="name" />
+  </p>
+  <p>
+    <label>Комментарий:</label>
+    <br />
+    <textarea name="text_comment" cols="30" rows="5"></textarea>
+  </p>
+  <p>
+    <input type="hidden" name="page_id" value="<?echo ''.$_GET["article"].'';?>" />
+    <input type="submit" value="Отправить" />
+  </p>
+</form>
+</div>
+<div class="col"></div>
+</div>
+</div>
+<?
+
+
+
+
+
+
+
+$article = $_GET['article'];
+
+
+$query = "SELECT * FROM `commit` WHERE `id_article` LIKE '$article'";
+
+$result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
+if($result)
+$rows = mysqli_num_rows($result); // количество полученных строк
+echo '<div class="container">';
+ for ($i = 0 ; $i < $rows ; ++$i)
+ {
+        $row = mysqli_fetch_row($result);
+
+
+
+
+
+
+if( ($i % 2) == 0) echo'<div class="row">';
+
+
+
+echo '
+        <div class="col-lg-1">
+            <img align="left" width="50px;" height="50px;" src="'.$row[8].'">
+        </div>
+        <div class="col-lg-5">
+            <div><strong>'.$row[1].'</strong></div>
+            <div>'.$row[2].'</div>
+
+            <button name="like" method="POST" type="'.$i.'"><img width="20px" height="20px" src="../img/like.png"></button>
+            <strong>'.$row[6].'</strong>
+            <img style="rotation: 180deg;" width="20px" height="20px" src="../img/dislike.png">
+            <strong>'.$row[7].'</strong>
+
+        </div>
+
+    ';
+    if( ($i % 2) == 1) echo'</div>';
+
+}
+echo '</div>';
+// очищаем результат
+ mysqli_free_result($result);
+?>
 
 
 
