@@ -11,6 +11,7 @@
 include_once'nav.php';
 ?>
 <h1 class="mx-5">Личный кабинет</h1>
+
 <?
 
 
@@ -36,7 +37,36 @@ $rows = mysqli_num_rows($result); // количество полученных �
         echo "<div class='container'>
         <div class='row'>
             <div class='col-3'>
-                <ul class='my-02'>
+                <ul class='my-02'>";?>
+                  <h4>Добавить статью</h4>
+                <form method="post" action="up.php" enctype="multipart/form-data" class="mx-auto" style="width: 250px">
+    <div class="form-group">
+        <label for="exampleInputEmail1">Название</label>
+        <input name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Описание</label>
+        <textarea name="text" type="text" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Аннотация</label>
+        <textarea name="pretext" type="text" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+
+    </div>
+
+
+
+
+
+
+    <div >
+        <input type="file" name="picture">
+        <input type="submit" value="Загрузить">
+    </div>
+</form>
+<?php echo "
                 </ul>
                 </div>
                 <div class='col'><h3>Мои статьи</h3>";

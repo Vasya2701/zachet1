@@ -42,11 +42,11 @@ $rows = mysqli_num_rows($result); // количество полученных �
                         </div>
                         <div class="row">
                             <div class="col-4">
-                                <img style="width: 100%" src="'. $row[6] .'">
+                                <img style="width: 100%" src="../img/'. $row[6] .'">
                             </div>
                             <div class="col">
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed auctor purus non turpis varius ultricies.
+                                    '.$row[7].'
                                 </p>
                             </div>
                             <div class="row">
@@ -54,7 +54,7 @@ $rows = mysqli_num_rows($result); // количество полученных �
                                 <div class="col-3">Autor:' .$row[4].'</div>
                                 <div class="col-3"></div>
                                 <div style="padding:" class="col-3 text-right">
-                                    <a style=" " href="page/article.php?article='.$row[5].'" class="pull-right btn btn-primary">More</a>
+                                    <a style=" " href="page/article.php?article='.$row[0].'" class="pull-right btn btn-primary">More</a>
                                 </div>
                             </div>
                         </div>
